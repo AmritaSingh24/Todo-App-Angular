@@ -1,0 +1,50 @@
+  <!-- Block-form -->
+  <section class="block__form">
+    <form [formGroup]="todoform" (submit)="add()">
+        <div class="form-input">
+            <label for="Task">Todo</label>
+            <input type="text" formControlName="task" class="taskInput" placeholder="Add Task">
+              <span class="requiredInput" [ngClass]="classes">Todo is required.</span> 
+        </div>
+        <div class="form-input">
+            <label for="Priority">Priority</label>
+            <select formControlName="priority" class="select taskInput">
+              <option value>Select Priority</option>
+              <option value="low">Low</option>
+              <option value="medium">Medium</option>
+              <option value="high">High</option>
+            </select>
+            <span class="requiredInput" [ngClass]="classes" >Priority is required.</span>
+        </div>
+        <button id="add" class="btn btn__primary btn--stretched">Add</button>
+    </form>
+  </section>
+
+  <!-- Filter-Button  -->
+  <section class="block block-filterBtn {{(todos.length>0 ? '' : 'displaynone')}}" >
+    <div class="buttons">
+      <button class="btn {{filter=='all'?'btn__primary':'btn__outline'}}" (click)="handleFilterChange('all')">All</button>
+      <button class="btn {{filter=='completed'?'btn__primary':'btn__outline'}}" (click)="handleFilterChange('completed')">Completed</button>
+      <button class="btn {{filter=='incompleted'?'btn__primary':'btn__outline'}}" (click)="handleFilterChange('incompleted')">Uncompleted</button>
+    </div> 
+  </section>
+
+  <!-- Block-Todo -->
+  <section class="block">
+    <ul *ngFor="let todo of filterItems; let i = index; ">
+      <li class="todo-list {{(todo.isDone ? 'lineThrough' : '' )}}">
+        <div class="todo-details ">
+          <p class="todo-task">{{todo.task}}</p>
+          <p class="todo-priority">{{todo.priority}}</p>
+        </div>
+        <div class="todo-actions">
+          <button class="btn__primary btn btn-round {{(todo.isDone? 'btn-disabled' : '')}}" (click)="isComplete(todo.addedAt)">
+            <i class="material-icons">check</i>
+          </button>
+          <button class="btn btn-round btn__primary">
+            <i class="material-icons" (click)="delete(i)">delete</i>             
+          </button>
+        </div>
+      </li>
+    </ul>
+  </section>

@@ -1,0 +1,25 @@
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+}
+.block__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  padding: 1.5rem 2rem;
+}
+.header_brand {
+  font-size: 3.2rem;
+  font-weight: bold;
+  cursor: default;
+  margin: 0;
+}
+@media screen and (min-width: 575px) {
+  .block__header {
+    padding: 1.8rem 2.4rem;
+  }
+  .header_brand {
+    font-size: 3.7rem;
+  }
+}
